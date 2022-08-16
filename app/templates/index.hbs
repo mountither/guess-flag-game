@@ -1,0 +1,37 @@
+{{page-title 'Welcome!'}}
+
+<div class='flex flex-col h-screen item-center'>
+  <div class='m-auto px-5'>
+    <h1
+      class='text-center font-extrabold text-transparent text-5xl sm:text-6xl bg-clip-text bg-gradient-to-r from-pink-500 to-purple-400 pb-10'
+    >Welcome to the World Flag Game!
+
+
+
+    </h1>
+
+    <div class='text-center mt-5'>
+      <LinkTo @route='game'>
+        <button
+          type='button'
+          class='bg-white px-5 rounded-2xl py-3 hover:opacity-70 duration-300 ease-in-out'
+        >
+          <p class='text-black text-2xl'>Single Player</p>
+        </button>
+      </LinkTo>
+    </div>
+    {{!-- <div class='text-center mt-10'>
+      <LinkTo @route='game'>
+        <button
+          type='button'
+          class='bg-white px-5 rounded-2xl py-3 hover:opacity-70 duration-300 ease-in-out'
+        >
+          <p class='text-black text-2xl'>Play with a friend</p>
+        </button>
+      </LinkTo>
+    </div> --}}
+
+  </div>
+</div>
+
+{{outlet}}

@@ -1,0 +1,61 @@
+{{page-title 'Start Game'}}
+
+<div class='fixed top-3 left-4'>
+  <a href='/' class="flex flex-col items-center">
+    <FaIcon @icon='arrow-left-long' class='text-white h-8 sm:h-10' />
+    <p class="text-sm text-gray-300 font-bold mt-2">Home</p>
+  </a>
+</div>
+
+<div class='fixed top-3 right-4 flex flex-col items-center text-white'>
+  <p class='text-lg'>Score:</p>
+  <p class='text-2xl font-extrabold'>{{this.score}}</p>
+</div>
+
+<MainContainer>
+
+  <h1
+    class='text-center font-extrabold text-transparent text-4xl sm:text-6xl bg-clip-text bg-gradient-to-r from-blue-300 to-emerald-500 pb-10'
+  >Guess Away!
+  </h1>
+
+  <p
+    class='text-white text-center font-bold text-2xl'
+  >{{this.answerCountry.name}}?</p>
+
+  <div class='self-center flex flex-col items-center mt-20 gap-10'>
+    {{#each this.randomFlags as |randomFlag|}}
+
+      <img
+        src={{randomFlag.file_url}}
+        class='w-30 h-20 rounded-md object-cover hover:opacity-90 duration-300 ease-in-out cursor-pointer
+          {{if
+            this.isFlagsGrayscale
+            "grayscale hover:grayscale-0 "
+            "grayscale-0"
+          }}'
+        {{on 'click' (fn this.onFlagClick randomFlag.name)}}
+      />
+    {{/each}}
+  </div>
+
+  {{#if this.answerIsCorrect}}
+    <p class='text-3xl text-green-300 mt-20'>CORRECT ANSWER</p>
+  {{/if}}
+
+  {{#if this.answerIsWrong}}
+    <p class='text-3xl text-red-300 mt-20'>INCORRECT ANSWER</p>
+  {{/if}}
+
+  <button
+    type='button'
+    class='px-5 mt-[200px] bg-gray-600 rounded-lg py-3 hover:opacity-70 duration-300 ease-in-out'
+    {{on 'click' (fn this.triggerFlagGrayScale)}}
+  >
+    <p class='text-white text-sm font-extrabold'>
+      {{if this.isFlagsGrayscale 'Make flags coloured' 'Make flags grayscale'}}
+    </p>
+  </button>
+</MainContainer>
+
+{{outlet}}
