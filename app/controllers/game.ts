@@ -14,7 +14,7 @@ export default class Game extends Controller {
   @tracked answerCountry: FlagData | undefined =
     this.data[Math.floor(Math.random() * this.data.length)];
 
-  @tracked answerState: 'yes' | 'no' | undefined = undefined;
+  @tracked answerState: 'correct' | 'wrong' | undefined = undefined;
 
   get randomFlags(): any {
     const answerExcluded = this.data.filter(
@@ -28,18 +28,18 @@ export default class Game extends Controller {
   }
 
   get answerIsCorrect(): boolean {
-    return this.answerState === 'yes';
+    return this.answerState === 'correct';
   }
 
   get answerIsWrong(): boolean {
-    return this.answerState === 'no';
+    return this.answerState === 'wrong';
   }
 
   @action
   onFlagClick(country?: string) {
-    this.answerState = country === this.answerCountry?.name ? 'yes' : 'no';
+    this.answerState = country === this.answerCountry?.name ? 'correct' : 'wrong';
 
-    if (this.answerState === 'no') {
+    if (this.answerState === 'wrong') {
       this.score -= 1;
       return;
     }
@@ -59,7 +59,7 @@ export default class Game extends Controller {
   }
 }
 
-// DO NOT DELETE: this is how TypeScript knows how to look up your controllers.
+// DO wrongT DELETE: this is how TypeScript kwrongws how to look up your controllers.
 declare module '@ember/controller' {
   interface Registry {
     game: Game;
